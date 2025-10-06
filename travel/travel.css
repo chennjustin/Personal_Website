@@ -248,6 +248,20 @@ body.dark-mode .page-subtitle {
   transform: none;
 }
 
+/* Australia Coming Soon overlay */
+.coming-soon-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coming-soon-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
 .destination-image {
   position: relative;
   height: 150px;

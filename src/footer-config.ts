@@ -62,7 +62,7 @@ function createDefaultFooter(): void {
           <a href="mailto:chenjustin824@ntu.im"><i class="fas fa-envelope"></i></a>
           <a href="https://github.com/chennjustin" target="_blank"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/hung-chi-chen-b82b86369/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/chccc_0824/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </footer>

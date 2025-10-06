@@ -15,12 +15,18 @@ class DestinationNavigation {
     setupDestinationCards() {
         const destinationCards = document.querySelectorAll('.destination-card');
         destinationCards.forEach((card) => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                // 禁止 disabled 卡片的任何點擊互動
+                if (card.classList.contains('disabled')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
                 const destination = card.getAttribute('data-destination');
                 if (destination) {
                     this.showTravelModal(destination);
                 }
-            });
+            }, true);
         });
     }
     showTravelModal(destination) {
@@ -33,9 +39,9 @@ class DestinationNavigation {
             (_b = this.hongkongMacauModal) === null || _b === void 0 ? void 0 : _b.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+        // 澳洲目前不開啟任何內容
         else if (destination === 'australia') {
-            (_c = this.australiaModal) === null || _c === void 0 ? void 0 : _c.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            return;
         }
     }
     closeModal() {
