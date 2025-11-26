@@ -1,67 +1,108 @@
 # 陳竑齊（Hung‑Chi, Justin）個人網站
 
-使用 HTML、CSS 與 TypeScript 實作，並支援深色/淺色主題。
+使用 Next.js 14+ App Router、TypeScript、React 和 Tailwind CSS 實作，並支援深色/淺色主題。
+
+## 技術棧
+
+- **框架**: Next.js 14+ (App Router)
+- **語言**: TypeScript
+- **UI 庫**: React
+- **樣式**: Tailwind CSS + 自訂 CSS
+- **字體**: Inter (Google Fonts)
+- **圖標**: Font Awesome 6.0
 
 ## 內容導覽
 
-- 首頁 Home：自我介紹 & 動態標題
-- 關於我 About：聯絡資訊、相關能力與學經歷、興趣
-- 旅行 Travel：各個旅行紀錄
-- 聯繫 Contact：常用聯絡方式
+- **首頁** (`/home`): 自我介紹 & 動態標題
+- **關於我** (`/about`): 聯絡資訊、相關能力與學經歷、興趣
+- **旅行** (`/travel`): 各個旅行紀錄
+- **聯繫** (`/contact`): 常用聯絡方式
 
 ## 網站特色與互動
 
-- 主題切換：支援深色/淺色模式，會記住偏好
-- 平滑動畫：進場淡入、卡片懸停、標題輪播、時間軸/模態切換
-- 複製便捷：在 About 可一鍵複製 Email/電話
-- 響應式設計（開發中）：桌機、平板、手機皆可閱讀
-- 中英切換：開發中
-
-## 介面與動線
-
-- 導航列：固定於頂端，滾動會改變樣式；手機為漢堡選單
-- Navbar/Footer：非首頁頁面會自動載入首頁的 Navbar/Footer
-- 動畫節奏：元素淡入、卡片升起、圖示縮放、點點同步
-
-## 技術與實作
-
-- HTML/CSS：語義化標記、CSS 變數、Grid/Flex、自訂動畫、RWD
-- TypeScript：頁面模組（home.ts、about.ts、travel.ts、contact.ts），與共用腳本（navbar-config.ts、footer-config.ts）
-- IntersectionObserver：滾動進場與時間軸/卡片動畫觸發
-- LocalStorage：主題偏好保存
-- 注意：語言切換已移除，所有文案直接寫在 HTML（避免多語程式邏輯，管理更單純）
+- **主題切換**: 支援深色/淺色模式，會記住偏好
+- **平滑動畫**: 進場淡入、卡片懸停、標題輪播、時間軸/模態切換
+- **複製便捷**: 在 About 可一鍵複製 Email/電話
+- **響應式設計**: 桌機、平板、手機皆可閱讀
+- **表單驗證**: Contact 頁面包含完整的表單驗證
 
 ## 專案結構
 
 ```
-hw1/
-├── home/               首頁（index.html、home.css、home.ts/js）
-├── about/              關於我（about.html、about.css、about.ts/js）
-├── travel/             旅行（travel.html、travel.css、travel.ts/js）
-├── contact/            聯繫（contact.html、contact.css、contact.ts/js）
-├── src/                共用資源（navbar-config.ts/js、footer-config.ts/js、圖片）
+personal-website/
+├── app/
+│   ├── layout.tsx              # 全域 layout
+│   ├── page.tsx                # 根路由（重定向到 /home）
+│   ├── globals.css             # 全域樣式
+│   ├── home/
+│   │   ├── page.tsx            # 首頁
+│   │   └── home.css            # 首頁樣式
+│   ├── about/
+│   │   ├── page.tsx            # 關於我頁面
+│   │   └── about.css           # 關於我樣式
+│   ├── travel/
+│   │   ├── page.tsx            # 旅行頁面
+│   │   └── travel.css          # 旅行樣式
+│   ├── contact/
+│   │   ├── page.tsx            # 聯絡頁面
+│   │   └── contact.css         # 聯絡樣式
+│   └── api/
+│       └── contact/
+│           └── route.ts        # 聯絡表單 API
+├── components/
+│   ├── Navbar.tsx              # 導航列組件
+│   ├── Footer.tsx              # 頁尾組件
+│   ├── ThemeToggle.tsx         # 主題切換組件
+│   └── TitleAnimation.tsx      # 標題動畫組件
+├── hooks/
+│   ├── useTheme.ts             # 主題管理 hook
+│   └── useScrollAnimation.ts   # 滾動動畫 hook
+├── public/                     # 靜態資源（圖片）
+├── styles/
+│   └── globals.css             # Tailwind + CSS 變數
+├── tailwind.config.ts
 ├── tsconfig.json
-└── README.md
+├── next.config.js
+└── package.json
 ```
 
-## 在本機開啟（可再home的資料夾找到index.html）
+## 安裝與執行
 
-1) 安裝 TypeScript 並編譯：
+1. 安裝依賴：
 
 ```bash
-cd hw1
-npx tsc
+npm install
 ```
 
-2) 啟動簡單伺服器：
+2. 啟動開發伺服器：
 
 ```bash
-python -m http.server 8000
-# 或
-npx serve .
+npm run dev
 ```
 
-3) 瀏覽 `http://localhost:8000/hw1/home/index.html`
+3. 開啟瀏覽器訪問 `http://localhost:3000`
+
+## 建置與部署
+
+1. 建置生產版本：
+
+```bash
+npm run build
+```
+
+2. 啟動生產伺服器：
+
+```bash
+npm start
+```
+
+## 部署到 Vercel
+
+專案已配置好可一鍵部署到 Vercel：
+
+1. 將專案推送到 GitHub
+2. 在 Vercel 中導入專案
+3. Vercel 會自動偵測 Next.js 並進行部署
 
 ## 聯絡方式
 
